@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/GlobalState";
 function moneyFormatter(num) {
   let p = num.toFixed(2).split(".");
   return (
-    "$ " +
+    "₹ " +
     p[0]
       .split("")
       .reverse()
@@ -22,8 +22,10 @@ export const Balance = () => {
 
   const amounts = transactions.map((transaction) => transaction.amount);
 
-  const total = amounts.reduce((acc, item) => (acc += item), 0);
-
+  let total =
+    amounts.reduce((acc, item) => (acc += item), 0) *
+    -1;
+  
   return (
     <>
       <h4>Your Balance</h4>
